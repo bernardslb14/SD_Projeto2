@@ -10,6 +10,7 @@ public class Equipa {
     private int id;
 
     private String nome, imagem;
+    private int vitorias, empates, derrotas;
 
     //Um jogador só pertence a uma equipa e Uma equipa tem vários jogadores
     /*
@@ -30,4 +31,69 @@ public class Equipa {
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Jogo> jogos;
 
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
+    }
+
+    public List<Jogador> getJogadoresEquipa() {
+        return jogadoresEquipa;
+    }
+
+    public void setJogadoresEquipa(List<Jogador> jogadoresEquipa) {
+        this.jogadoresEquipa = jogadoresEquipa;
+    }
+
+    public List<Jogo> getJogos() {
+        return jogos;
+    }
+
+    public void setJogos(List<Jogo> jogos) {
+        this.jogos = jogos;
+    }
+
+    public int getVitorias() {
+        return vitorias;
+    }
+
+    public void setVitorias(int vitorias) {
+        this.vitorias = vitorias;
+    }
+
+    public int getEmpates() {
+        return empates;
+    }
+
+    public void setEmpates(int empates) {
+        this.empates = empates;
+    }
+
+    public int getDerrotas() {
+        return derrotas;
+    }
+
+    public void setDerrotas(int derrotas) {
+        this.derrotas = derrotas;
+    }
 }

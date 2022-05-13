@@ -14,11 +14,21 @@ public class Evento {
     @JoinColumn(name = "jogo_id")
     private Jogo jogo;
 
-    //Um golo está associado a um evento e Um evento tem vários golos
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Golo> listaGolos;
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Jogo getJogo() {
+        return jogo;
+    }
+
+    public void setJogo(Jogo jogo) {
+        this.jogo = jogo;
+    }
 }
-
-
-
-
