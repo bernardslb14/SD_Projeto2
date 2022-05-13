@@ -14,7 +14,16 @@ public class User {
     private String nome, password, email, contacto;
     private boolean isAdmin;
 
+    public User(String nome, String password, String email, String contacto, boolean isAdmin) {
+        this.nome = nome;
+        this.password = password;
+        this.email = email;
+        this.contacto = contacto;
+        this.isAdmin = isAdmin;
+    }
 
+    public User() {
+    }
 
     public int getId() {
         return id;

@@ -1,8 +1,15 @@
 package org.uc.Classes;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity (name = "Jogo")
 public class Jogo {
@@ -26,7 +33,21 @@ public class Jogo {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Evento> eventos;
 
+    public Jogo(String nome, int currGolosEquipaCasa, int currGolosEquipaFora, Date data_inicio, Date data_fim,
+            boolean estado, String localizacao, List<Equipa> equipas, List<Evento> eventos) {
+        this.nome = nome;
+        this.currGolosEquipaCasa = currGolosEquipaCasa;
+        this.currGolosEquipaFora = currGolosEquipaFora;
+        this.data_inicio = data_inicio;
+        this.data_fim = data_fim;
+        this.estado = estado;
+        this.localizacao = localizacao;
+        this.equipas = equipas;
+        this.eventos = eventos;
+    }
 
+    public Jogo() {
+    }
 
     public int getId() {
         return id;

@@ -31,7 +31,19 @@ public class Equipa {
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Jogo> jogos;
 
+    public Equipa(String nome, String imagem, int vitorias, int empates, int derrotas, List<Jogador> jogadoresEquipa,
+            List<Jogo> jogos) {
+        this.nome = nome;
+        this.imagem = imagem;
+        this.vitorias = vitorias;
+        this.empates = empates;
+        this.derrotas = derrotas;
+        this.jogadoresEquipa = jogadoresEquipa;
+        this.jogos = jogos;
+    }
 
+    public Equipa() {
+    }
 
     public int getId() {
         return id;

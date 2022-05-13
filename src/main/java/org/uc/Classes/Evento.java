@@ -1,7 +1,12 @@
 package org.uc.Classes;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity(name = "Evento")
 public class Evento {
@@ -14,7 +19,12 @@ public class Evento {
     @JoinColumn(name = "jogo_id")
     private Jogo jogo;
 
+    public Evento(Jogo jogo) {
+        this.jogo = jogo;
+    }
 
+    public Evento() {
+    }
 
     public int getId() {
         return id;

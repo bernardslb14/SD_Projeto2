@@ -1,7 +1,12 @@
 package org.uc.Classes;
 
-import javax.persistence.*;
 import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity(name = "Cartao")
 @PrimaryKeyJoinColumn(name = "id")
@@ -14,6 +19,23 @@ public class Cartao extends Evento {
     @JoinColumn(name = "jogador_id")
     private Jogador jogador;
 
+
+    public Cartao(Jogo jogo, Date data_cartao, boolean tipo, Jogador jogador) {
+        super(jogo);
+        this.data_cartao = data_cartao;
+        this.tipo = tipo;
+        this.jogador = jogador;
+    }
+
+    public Cartao(Date data_cartao, boolean tipo, Jogador jogador) {
+        super();
+        this.data_cartao = data_cartao;
+        this.tipo = tipo;
+        this.jogador = jogador;
+    }
+
+    public Cartao() {
+    }
 
     public Date getData_cartao() {
         return data_cartao;

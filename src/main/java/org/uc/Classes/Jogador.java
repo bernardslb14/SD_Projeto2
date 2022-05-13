@@ -1,8 +1,16 @@
 package org.uc.Classes;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity (name = "Jogador")
 public class Jogador {
@@ -28,7 +36,18 @@ public class Jogador {
     @OneToMany(mappedBy = "jogador")
     private List<Cartao> cartoesJogador;
 
+    public Jogador(String nome, String posicao, Date data_nascimento, Equipa equipa, List<Golo> golosJogador,
+            List<Cartao> cartoesJogador) {
+        this.nome = nome;
+        this.posicao = posicao;
+        this.data_nascimento = data_nascimento;
+        this.equipa = equipa;
+        this.golosJogador = golosJogador;
+        this.cartoesJogador = cartoesJogador;
+    }
 
+    public Jogador() {
+    }
 
     public int getId() {
         return id;
