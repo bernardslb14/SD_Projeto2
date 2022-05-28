@@ -2,15 +2,11 @@ package org.uc.Classes;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.*;
 
 @Entity (name = "Golo")
-@PrimaryKeyJoinColumn(name = "id")
-public class Golo extends Evento {
+@Table(name = "Golo")
+public class Golo extends SuperClassEventos {
     private Date data_golo;
 
     //Um jogador pode fazer vários golos e Um golo está associado a um jogador
@@ -19,7 +15,7 @@ public class Golo extends Evento {
     private Jogador marcador;
 
     public Golo(Jogo jogo, Date data_golo, Jogador marcador) {
-        super(jogo);
+        super.setJogo(jogo);
         this.data_golo = data_golo;
         this.marcador = marcador;
     }

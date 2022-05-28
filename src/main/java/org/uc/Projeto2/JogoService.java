@@ -23,7 +23,7 @@ public class JogoService
 
     public void addGame(Jogo j)  
     {    
-        gameRepository.save(j);    
+        gameRepository.save(j);
     }
 
     public Optional<Jogo> getGame(int id) {

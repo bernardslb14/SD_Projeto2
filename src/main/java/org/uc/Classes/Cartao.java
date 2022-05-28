@@ -2,15 +2,11 @@ package org.uc.Classes;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.*;
 
 @Entity(name = "Cartao")
-@PrimaryKeyJoinColumn(name = "id")
-public class Cartao extends Evento {
+@Table(name = "Cartao")
+public class Cartao extends SuperClassEventos{
     private Date data_cartao;
     private boolean tipo; //True -> Amarelo | False -> Vermelho
 
@@ -21,7 +17,7 @@ public class Cartao extends Evento {
 
 
     public Cartao(Jogo jogo, Date data_cartao, boolean tipo, Jogador jogador) {
-        super(jogo);
+        super.setJogo(jogo);
         this.data_cartao = data_cartao;
         this.tipo = tipo;
         this.jogador = jogador;
