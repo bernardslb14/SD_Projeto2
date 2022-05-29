@@ -1,0 +1,14 @@
+<form th:action="@{/checkOptionAdmin}" th:object="${user}" method="post">
+  <div="form-row">
+    <select name="opcao" th:field="*{opcao}" size="10" multiple="multiple">
+      <option th:each="e : ${opcoes}"
+              th:value="${{e}}"
+              th:text="${e}">
+        The name
+      </option>
+    </select>
+  </div>
+
+  <button type="submit">Enter</button>
+  </div>
+</form>

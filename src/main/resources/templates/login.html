@@ -1,0 +1,14 @@
+<form th:action="@{/checkUser}" th:object="${user}" method="post">
+  <div="form-row">
+    <div>
+      <label>Username</label>
+      <input type="text" th:field="*{nome}">
+    </div>
+    <div>
+      <label>Password</label>
+      <input type="text" th:field="*{password}">
+    </div>
+
+    <button type="submit">Enter</button>
+  </div>
+</form>

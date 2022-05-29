@@ -1,5 +1,7 @@
 package org.uc.Classes;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +15,8 @@ public class Jogador {
     private int id;
 
     private String nome, posicao;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date data_nascimento;
 
 

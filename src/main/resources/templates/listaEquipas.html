@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista Equipas</title>
+    <meta charset="utf8"/>
+</head>
+<body>
+<h1>Lista Equipas</h1>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>NOME</th>
+        <th>IMAGEM</th>
+    </tr>
+    <tr th:each="e : ${equipas}">
+        <td th:text="${e.id}">id</td>
+        <td th:text="${e.nome}">nome</td>
+        <td th:text="${e.imagem}">imagem</td>
+    </tr>
+</table>
+
+</body>
+</html>

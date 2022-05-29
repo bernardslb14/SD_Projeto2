@@ -1,0 +1,17 @@
+<form th:action="@{/guardaEquipa}" th:object="${equipa}" method="post">
+  <div="form-row">
+  <div>
+    <input type="hidden" th:field="*{id}">
+  </div>
+  <div>
+    <label>Nome</label>
+    <input type="text" th:field="*{nome}">
+  </div>
+  <div>
+    <label>Imagem</label>
+    <input type="text" th:field="*{imagem}">
+  </div>
+
+  <button type="submit">Inserir</button>
+  </div>
+</form>

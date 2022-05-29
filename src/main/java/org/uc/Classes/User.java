@@ -6,11 +6,13 @@ import javax.persistence.*;
 @Table (name = "Utilizador")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
 
     private String nome, password, email, contacto;
     private boolean isAdmin;
+
+    private String opcao;
 
     public User(String nome, String password, String email, String contacto, boolean isAdmin) {
         this.nome = nome;
@@ -63,11 +65,19 @@ public class User {
         this.contacto = contacto;
     }
 
-    public boolean isAdmin() {
+    public boolean getIsAdmin() {
         return isAdmin;
     }
 
-    public void setAdmin(boolean admin) {
+    public void setIsAdmin(boolean admin) {
         isAdmin = admin;
+    }
+
+    public String getOpcao() {
+        return opcao;
+    }
+
+    public void setOpcao(String opcao) {
+        this.opcao = opcao;
     }
 }

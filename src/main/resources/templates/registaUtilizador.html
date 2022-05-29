@@ -1,0 +1,29 @@
+<form th:action="@{/guardaUtilizador}" th:object="${user}" method="post">
+    <div="form-row">
+    <div>
+        <input type="hidden" th:field="*{id}">
+    </div>
+    <div>
+        <label>Nome</label>
+        <input type="text" th:field="*{nome}">
+    </div>
+    <div>
+        <label>Password</label>
+        <input type="text" th:field="*{password}">
+    </div>
+    <div>
+        <label>Email</label>
+        <input type="text" th:field="*{email}">
+    </div>
+    <div>
+        <label>Contacto Telefónico</label>
+        <input type="text" th:field="*{contacto}">
+    </div>
+    <div>
+        <label>Administrador</label>
+        <input type="checkbox" th:field="*{isAdmin}" checked>
+    </div>
+
+    <button type="submit">Registar</button>
+    </div>
+</form>
