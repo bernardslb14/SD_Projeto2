@@ -17,7 +17,7 @@
   </div>
   <label>Equipa A</label>
   <div>
-    <select id="equipas" th:field="*{equipas}" size="10" multiple="multiple">
+    <select id="equipas" th:field="*{equipas[0]}" size="10" multiple="multiple">
       <option th:each="e : ${allEquipas}"
               th:value="${{e}}"
               th:text="${e.nome}">
@@ -27,7 +27,7 @@
   </div>
   <label>Equipa B</label>
   <div>
-    <select id="equipas" th:field="*{equipas}" size="10" multiple="multiple">
+    <select id="equipas" th:field="*{equipas[1]}" size="10" multiple="multiple">
       <option th:each="e : ${allEquipas}"
               th:value="${{e}}"
               th:text="${e.nome}">

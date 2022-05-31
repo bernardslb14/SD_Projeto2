@@ -34,4 +34,14 @@ public class EquipaService
         teamRepository.delete(e);
     }
 
+
+    public Equipa getTeam(String s){
+        List<Equipa> allTeams = this.getAllTeams();
+        for(Equipa elem : allTeams){
+            if (elem.getNome().equals(s)){
+                return elem;
+            }
+        }
+        return null;
+    }
 }  

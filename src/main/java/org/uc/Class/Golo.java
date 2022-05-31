@@ -1,28 +1,32 @@
 package org.uc.Class;
 
-import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
+
+import java.util.Date;
 import javax.persistence.*;
+
 
 @Entity (name = "Golo")
 @Table(name = "Golo")
 public class Golo extends SuperClassEventos {
-    private Date data_golo;
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private Date momento_golo;
 
     //Um jogador pode fazer vários golos e Um golo está associado a um jogador
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "jogador_id")
     private Jogador marcador;
 
-    public Golo(Jogo jogo, Date data_golo, Jogador marcador) {
+    public Golo(Jogo jogo, Date momento_golo, Jogador marcador) {
         super.setJogo(jogo);
-        this.data_golo = data_golo;
+        this.momento_golo = momento_golo;
         this.marcador = marcador;
     }
 
-    public Golo(Date data_golo, Jogador marcador) {
+    public Golo(Date momento_golo, Jogador marcador) {
         super();
-        this.data_golo = data_golo;
+        this.momento_golo = momento_golo;
         this.marcador = marcador;
     }
 
@@ -30,12 +34,12 @@ public class Golo extends SuperClassEventos {
         super();
     }
 
-    public Date getData_golo() {
-        return data_golo;
+    public Date getMomento_golo() {
+        return momento_golo;
     }
 
-    public void setData_golo(Date data_golo) {
-        this.data_golo = data_golo;
+    public void setMomento_golo(Date momento_golo) {
+        this.momento_golo = momento_golo;
     }
 
     public Jogador getMarcador() {

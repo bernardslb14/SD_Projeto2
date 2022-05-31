@@ -7,6 +7,12 @@
 <body>
 <h1>Lista Jogadores</h1>
 
+<form action="/insertPLPlayers" method="post">
+  <button type="submit">Popular com Jogadores da PremierLeague</button>
+</form>
+
+<br>
+
 <table border="1">
   <tr>
     <th>NOME</th>
@@ -19,7 +25,7 @@
   <tr th:each="j : ${jogadores}">
     <td th:text="${j.nome}">nome</td>
     <td th:text="${j.posicao}">posicao</td>
-    <td th:text="${j.data_nascimento}">data_nascimento</td>
+    <td th:text="${#dates.format(j.data_nascimento, 'yyyy-MM-dd')}">data_nascimento</td>
     <td th:text="${j.equipa.nome}">equipa</td>
   </tr>
 </table>

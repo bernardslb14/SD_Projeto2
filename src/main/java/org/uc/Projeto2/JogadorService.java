@@ -34,4 +34,14 @@ public class JogadorService
         playerRepository.delete(j);
     }
 
+
+    public Jogador getPlayer(String s){
+        List<Jogador> allPlayers = this.getAllPlayers();
+        for(Jogador elem : allPlayers){
+            if (elem.getNome().equals(s)){
+                return elem;
+            }
+        }
+        return null;
+    }
 }  

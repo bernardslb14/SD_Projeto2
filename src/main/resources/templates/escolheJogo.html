@@ -1,0 +1,16 @@
+<form th:action="@{/detalhesJogo}" th:object="${jogo}" method="get">
+    <div="form-row">
+    <label>Jogo</label>
+    <div>
+        <select id="jogo" th:field="*{id}" size="10" multiple="multiple">
+            <option th:each="e : ${allJogos}"
+                    th:value="${{e}}"
+                    th:text="${e.nome}">
+                The name
+            </option>
+        </select>
+    </div>
+
+    <button type="submit">Enter</button>
+    </div>
+</form>

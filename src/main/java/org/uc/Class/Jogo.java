@@ -2,6 +2,7 @@ package org.uc.Class;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -31,12 +32,13 @@ public class Jogo {
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Equipa> equipas;
 
+
     //Um evento está associado a um jogo e Um jogo tem vários eventos
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Evento> eventos;
+    private List<Golo> golos;
 
     public Jogo(String nome, int currGolosEquipaCasa, int currGolosEquipaFora, Date data_inicio, Date data_fim,
-            boolean estado, String localizacao, List<Equipa> equipas, List<Evento> eventos) {
+            boolean estado, String localizacao, List<Equipa> equipas, List<Golo> golos) {
         this.nome = nome;
         this.currGolosEquipaCasa = currGolosEquipaCasa;
         this.currGolosEquipaFora = currGolosEquipaFora;
@@ -45,10 +47,14 @@ public class Jogo {
         this.estado = estado;
         this.localizacao = localizacao;
         this.equipas = equipas;
-        this.eventos = eventos;
+        this.golos = golos;
     }
 
     public Jogo() {
+        this.equipas = new ArrayList<Equipa>();
+        this.currGolosEquipaCasa = 0;
+        this.currGolosEquipaFora = 0;
+        this.estado = false;
     }
 
     public int getId() {
@@ -123,11 +129,11 @@ public class Jogo {
         this.equipas = equipas;
     }
 
-    public List<Evento> getEventos() {
-        return eventos;
+        public List<Golo> getGolos() {
+        return golos;
     }
 
-    public void setEventos(List<Evento> eventos) {
-        this.eventos = eventos;
+    public void setGolos(List<Golo> golos) {
+        this.golos = golos;
     }
 }

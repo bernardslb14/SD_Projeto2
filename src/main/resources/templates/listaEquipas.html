@@ -7,6 +7,13 @@
 <body>
 <h1>Lista Equipas</h1>
 
+
+<form action="/insertPLTeams" method="post">
+    <button type="submit">Popular com equipas da PremierLeague</button>
+</form>
+
+<br>
+
 <table border="1">
     <tr>
         <th>NOME</th>
@@ -14,7 +21,7 @@
     </tr>
     <tr th:each="e : ${equipas}">
         <td th:text="${e.nome}">nome</td>
-        <td th:text="${e.imagem}">imagem</td>
+        <td><img th:src="${e.imagem}" width="40" height="40"></td>
     </tr>
 </table>
 

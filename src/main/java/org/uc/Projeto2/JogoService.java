@@ -27,17 +27,6 @@ public class JogoService
 
     public void addGame(Jogo j)
     {
-        /*
-        Jogo novoJogo = new Jogo();
-
-        novoJogo.setNome(j.getNome());
-        novoJogo.getEquipas().addAll(j.getEquipas()
-                .stream()
-                .map(e -> { Equipa ee = equipaService.getTeam(e.getId());
-                            ee.getJogos().add(novoJogo);
-                            return ee;
-                            }).collect(Collectors.toList()));
-        */
 
         gameRepository.save(j);
     }
@@ -45,6 +34,7 @@ public class JogoService
     public Optional<Jogo> getGame(int id) {
         return gameRepository.findById(id);
     }
+
 
     public void delGame(Jogo j){
         gameRepository.delete(j);

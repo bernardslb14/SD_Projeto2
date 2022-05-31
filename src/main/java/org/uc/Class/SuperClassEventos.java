@@ -13,6 +13,10 @@ public class SuperClassEventos {
     @JoinColumn(name = "jogo_id")
     private Jogo jogo;
 
+    private String tipo;
+
+
+    public SuperClassEventos() {}
 
 
     public int getId() {
@@ -30,5 +34,14 @@ public class SuperClassEventos {
 
     public void setJogo(Jogo jogo) {
         this.jogo = jogo;
+    }
+
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }
