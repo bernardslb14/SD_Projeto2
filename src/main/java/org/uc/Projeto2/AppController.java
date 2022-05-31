@@ -10,10 +10,8 @@ import org.uc.Class.Jogo;
 import org.uc.Class.User;
 
 import java.util.List;
-import java.util.Optional;
 
-//@RestController
-//@RequestMapping("rest")
+
 @Controller
 public class AppController {
     @Autowired

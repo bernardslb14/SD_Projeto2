@@ -28,7 +28,7 @@ public class Jogo {
     private String localizacao;
 
     //A cada jogo estão associadas somente duas equipas
-    @ManyToMany(mappedBy = "jogos")
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Equipa> equipas;
 
     //Um evento está associado a um jogo e Um jogo tem vários eventos

@@ -29,7 +29,7 @@ public class Equipa {
         as ações feitas nesta classe para aquela lhe está associada.
             Ex: Se eliminarmos uma equipa, os jogos que lhe estão associados também vão ser eliminados.
      */
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "equipas")
     private List<Jogo> jogos;
 
     public Equipa(String nome, String imagem, int vitorias, int empates, int derrotas, List<Jogador> jogadoresEquipa,
