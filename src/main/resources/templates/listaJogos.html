@@ -20,7 +20,7 @@
     <tr th:each="e : ${jogos}">
         <td th:text="${e.nome}">nome</td>
         <td th:text="${e.localizacao}">localizacao</td>
-        <td th:text="${e.data_inicio}">data_inicio</td>
+        <td th:text="${#dates.format(e.data_inicio, 'yyyy-MM-dd')}">data_inicio</td>
         <td th:text="${e.equipas[0].nome}"equipa A</td>
         <td th:text="${e.currGolosEquipaCasa}">golos A</td>
         <td th:text="${e.equipas[1].nome}">equipa B</td>
