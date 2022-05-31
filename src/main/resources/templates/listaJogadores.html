@@ -9,7 +9,6 @@
 
 <table border="1">
   <tr>
-    <th>ID</th>
     <th>NOME</th>
     <th>POSICAO</th>
     <th>DATA NASCIMENTO</th>
@@ -18,7 +17,6 @@
     <th>CARTOES</th>
   </tr>
   <tr th:each="j : ${jogadores}">
-    <td th:text="${j.id}">id</td>
     <td th:text="${j.nome}">nome</td>
     <td th:text="${j.posicao}">posicao</td>
     <td th:text="${j.data_nascimento}">data_nascimento</td>

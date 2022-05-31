@@ -1,18 +1,22 @@
-package org.uc.Projeto2;    
+package org.uc.Projeto2;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.uc.Classes.Jogo;
+import org.uc.Class.Equipa;
+import org.uc.Class.Jogo;
 
 @Service    
 public class JogoService   
 {    
     @Autowired    
     private JogoRepository gameRepository;
+
+    @Autowired EquipaService equipaService;
 
     public List<Jogo> getAllGames()  
     {    
@@ -21,8 +25,20 @@ public class JogoService
         return records; 
     }
 
-    public void addGame(Jogo j)  
-    {    
+    public void addGame(Jogo j)
+    {
+        /*
+        Jogo novoJogo = new Jogo();
+
+        novoJogo.setNome(j.getNome());
+        novoJogo.getEquipas().addAll(j.getEquipas()
+                .stream()
+                .map(e -> { Equipa ee = equipaService.getTeam(e.getId());
+                            ee.getJogos().add(novoJogo);
+                            return ee;
+                            }).collect(Collectors.toList()));
+        */
+
         gameRepository.save(j);
     }
 

@@ -1,4 +1,6 @@
-package org.uc.Classes;
+package org.uc.Class;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
@@ -15,8 +17,13 @@ public class Jogo {
     private String nome;
     private int currGolosEquipaCasa;
     private int currGolosEquipaFora;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date data_inicio;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date data_fim;
+
     private boolean estado; // 0 -> Default | 1 -> Jogo Interrompido
     private String localizacao;
 

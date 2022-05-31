@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista Jogos</title>
+    <meta charset="utf8"/>
+</head>
+<body>
+<h1>Lista Jogos</h1>
+
+<table border="1">
+    <tr>
+        <th>NOME</th>
+        <th>LOCALIZAÇÃO</th>
+        <th>DATA INICIO</th>
+        <th>EQUIPA A</th>
+        <th>GOLOS</th>
+        <th>EQUIPA B</th>
+        <th>GOLOS</th>
+    </tr>
+    <tr th:each="e : ${jogos}">
+        <td th:text="${e.nome}">nome</td>
+        <td th:text="${e.localizacao}">localizacao</td>
+        <td th:text="${e.data_inicio}">data_inicio</td>
+        <td th:text="${e.equipas}"equipa A</td>
+        <td th:text="${e.currGolosEquipaCasa}">golos A</td>
+        <td th:text="${e.equipas}">equipa B</td>
+        <td th:text="${e.currGolosEquipaFora}">golos B</td>
+
+    </tr>
+</table>
+
+</body>
+</html>

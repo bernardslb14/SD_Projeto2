@@ -1,4 +1,4 @@
-package org.uc.Classes;
+package org.uc.Class;
 
 import org.springframework.format.annotation.DateTimeFormat;
 

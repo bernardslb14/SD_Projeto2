@@ -1,0 +1,41 @@
+<form th:action="@{/guardaJogo}" th:object="${jogo}" method="post">
+  <div="form-row">
+  <div>
+    <input type="hidden" th:field="*{id}">
+  </div>
+  <div>
+    <label>Nome</label>
+    <input type="text" th:field="*{nome}">
+  </div>
+  <div>
+    <label>Localização</label>
+    <input type="text" th:field="*{localizacao}">
+  </div>
+  <div>
+    <label>Data de Inicio</label>
+    <input type="date" th:field="*{data_inicio}">
+  </div>
+  <label>Equipa A</label>
+  <div>
+    <select id="equipas" th:field="*{equipas}" size="10" multiple="multiple">
+      <option th:each="e : ${allEquipas}"
+              th:value="${{e}}"
+              th:text="${e.nome}">
+        The name
+      </option>
+    </select>
+  </div>
+  <label>Equipa B</label>
+  <div>
+    <select id="equipas" th:field="*{equipas}" size="10" multiple="multiple">
+      <option th:each="e : ${allEquipas}"
+              th:value="${{e}}"
+              th:text="${e.nome}">
+        The name
+      </option>
+    </select>
+  </div>
+
+  <button type="submit">Inserir</button>
+  </div>
+</form>

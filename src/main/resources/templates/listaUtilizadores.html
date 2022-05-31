@@ -9,7 +9,6 @@
 
 <table border="1">
   <tr>
-    <th>ID</th>
     <th>NOME</th>
     <th>PASSWORD</th>
     <th>EMAIL</th>
@@ -17,7 +16,6 @@
     <th>ADMIN</th>
   </tr>
   <tr th:each="u : ${users}">
-    <td th:text="${u.id}">id</td>
     <td th:text="${u.nome}">nome</td>
     <td th:text="${u.password}">password</td>
     <td th:text="${u.email}">email</td>
