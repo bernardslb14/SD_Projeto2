@@ -154,11 +154,12 @@ public class Jogo {
         this.ocorrencias = ocorrencias;
     }
 
-    public List<Ocorrencia> getOcorrencias() {
-        return ocorrencias;
+    public List<Cartao> getCartoes() {
+        return cartoes;
     }
 
-    public void setOcorrencias(List<Ocorrencia> ocorrencias) {
-        this.ocorrencias = ocorrencias;
+    public void setCartoes(List<Cartao> cartoes) {
+        this.cartoes = cartoes;
     }
+
 }
