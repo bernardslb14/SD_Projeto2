@@ -20,7 +20,10 @@
     <td th:text="${u.password}">password</td>
     <td th:text="${u.email}">email</td>
     <td th:text="${u.contacto}">contacto</td>
-    <td th:text="${u.isAdmin}">admin</td>
+    <td>
+      <span th:if="${u.isAdmin}">&#x2714;</span>
+      <span th:unless="${u.isAdmin}">&#x2716;</span>
+    </td>
   </tr>
 </table>
 

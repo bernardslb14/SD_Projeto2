@@ -36,12 +36,15 @@ public class AppController {
 
     //...
 
-
+    @GetMapping("/")
+    public String index(){
+        return "redirect:/login";
+    }
 
     @GetMapping("/login")
-    public void menu(Model m){
+    public String menu(Model m){
         m.addAttribute("user", new User());
-
+        return "login";
     }
 
 
@@ -172,10 +175,12 @@ public class AppController {
 
 
     @GetMapping("/introduzJogo")
-    public void introduzJogo(Model m) {
+    public String introduzJogo(Model m) {
 
         m.addAttribute("jogo", new Jogo());
         m.addAttribute("allEquipas", this.equipaService.getAllTeams());
+
+        return "introduzJogo";
     }
 
     @PostMapping("/guardaJogo")
@@ -240,7 +245,10 @@ public class AppController {
         m.addAttribute("golo", golo);
         m.addAttribute("jogo", jogo);
 
-        m.addAttribute("allJogadores", this.jogadorService.getAllPlayers());
+        List<Jogador> allJogadores = jogo.getEquipas().get(0).getJogadoresEquipa();
+        allJogadores.addAll(jogo.getEquipas().get(1).getJogadoresEquipa());
+
+        m.addAttribute("allJogadores", allJogadores);
 
         return "reportaGolo";
     }
@@ -248,7 +256,19 @@ public class AppController {
     @PostMapping("/guardaGolo")
     public String guardaGolo(@ModelAttribute Golo g) {
 
-        this.goloService.addGoal(g);
+        goloService.addGoal(g);
+        g.getJogo().getGolos().add(g);
+        
+
+        if(g.getJogo().getEquipas().get(0).getNome().equals(g.getMarcador().getEquipa().getNome())){
+            g.getJogo().setCurrGolosEquipaCasa(g.getJogo().getCurrGolosEquipaCasa() + 1);
+        } else {
+            g.getJogo().setCurrGolosEquipaFora(g.getJogo().getCurrGolosEquipaFora() + 1);
+        }
+
+        jogoService.addGame(g.getJogo());
+        
+
         return "redirect:/displayUser";
     }
 
@@ -286,7 +306,6 @@ public class AppController {
     public void detalhesJogo(@ModelAttribute Jogo j, Model m) {
 
         Optional<Jogo> aux = this.jogoService.getGame(j.getId());
-        System.out.println(aux.get());
 
         if(aux.isPresent()){
             m.addAttribute("jogo", aux.get());

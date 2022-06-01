@@ -19,10 +19,10 @@ public class Jogo {
     private int currGolosEquipaCasa;
     private int currGolosEquipaFora;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date data_inicio;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date data_fim;
 
     private boolean estado; // 0 -> Default | 1 -> Jogo Interrompido
