@@ -14,7 +14,7 @@ public class JogoService
     @Autowired    
     private JogoRepository gameRepository;
 
-    @Autowired EquipaService equipaService;
+
 
     public List<Jogo> getAllGames()  
     {    
@@ -28,6 +28,7 @@ public class JogoService
 
         gameRepository.save(j);
     }
+
 
     public Optional<Jogo> getGame(int id) {
         return gameRepository.findById(id);

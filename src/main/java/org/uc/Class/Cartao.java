@@ -1,5 +1,7 @@
 package org.uc.Class;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 import javax.persistence.*;
@@ -7,8 +9,9 @@ import javax.persistence.*;
 @Entity(name = "Cartao")
 @Table(name = "Cartao")
 public class Cartao extends SuperClassEventos{
-    private Date data_cartao;
-    private boolean tipo; //True -> Amarelo | False -> Vermelho
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    private Date momento_cartao;
 
     //Um jogador pode receber vários cartões (no máximo três: dois amarelos seguindo-se um vermelho) e Um cartão está associado a um jogador
     @ManyToOne(fetch = FetchType.LAZY)
@@ -16,38 +19,30 @@ public class Cartao extends SuperClassEventos{
     private Jogador jogador;
 
 
-    public Cartao(Jogo jogo, Date data_cartao, boolean tipo, Jogador jogador) {
-        super.setJogo(jogo);
-        this.data_cartao = data_cartao;
-        this.tipo = tipo;
+    public Cartao(Jogo jogo, Date momento_cartao, String tipo, Jogador jogador) {
+        super(jogo, tipo);
+        this.momento_cartao = momento_cartao;
         this.jogador = jogador;
     }
 
-    public Cartao(Date data_cartao, boolean tipo, Jogador jogador) {
-        super();
-        this.data_cartao = data_cartao;
-        this.tipo = tipo;
+    public Cartao(Date momento_cartao, String tipo, Jogador jogador) {
+        super(tipo);
+        this.momento_cartao = momento_cartao;
         this.jogador = jogador;
     }
 
     public Cartao() {
+        super();
     }
 
-    public Date getData_cartao() {
-        return data_cartao;
+    public Date getMomento_cartao() {
+        return momento_cartao;
     }
 
-    public void setData_cartao(Date data_cartao) {
-        this.data_cartao = data_cartao;
+    public void setMomento_cartao(Date momento_cartao) {
+        this.momento_cartao = momento_cartao;
     }
 
-    public boolean isTipo() {
-        return tipo;
-    }
-
-    public void setTipo(boolean tipo) {
-        this.tipo = tipo;
-    }
 
     public Jogador getJogador() {
         return jogador;

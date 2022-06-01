@@ -34,7 +34,9 @@ public class AppController {
     @Autowired
     GoloService goloService;
 
-    //...
+    @Autowired
+    CartaoService cartaoService;
+
 
     @GetMapping("/")
     public String index(){
@@ -230,6 +232,10 @@ public class AppController {
         switch (e.getTipo()) {
             case "Golo":
                 return reportaGolo(e.getJogo(), m);
+            case "Cartao Amarelo":
+                return reportaCartaoAmarelo(e.getJogo(), m);
+            case "Cartao Vermelho":
+                return reportaCartaoVermelho(e.getJogo(), m);
         }
 
         return "redirect:/login";
@@ -255,22 +261,126 @@ public class AppController {
 
     @PostMapping("/guardaGolo")
     public String guardaGolo(@ModelAttribute Golo g) {
+        int count = 0, count2 = 0;
 
-        goloService.addGoal(g);
-        g.getJogo().getGolos().add(g);
-        
+        for(int i=0; i < g.getMarcador().getCartoesJogador().size(); i++){
+            if(g.getMarcador().getCartoesJogador().get(i).getTipo().equals("Cartao Vermelho")){
+                count++;
+            }
 
-        if(g.getJogo().getEquipas().get(0).getNome().equals(g.getMarcador().getEquipa().getNome())){
-            g.getJogo().setCurrGolosEquipaCasa(g.getJogo().getCurrGolosEquipaCasa() + 1);
-        } else {
-            g.getJogo().setCurrGolosEquipaFora(g.getJogo().getCurrGolosEquipaFora() + 1);
+            if(g.getMarcador().getCartoesJogador().get(i).getTipo().equals("Cartao Amarelo")){
+                count2++;
+            }
         }
 
-        jogoService.addGame(g.getJogo());
+        if(g.getJogo().getEquipas().get(0).getNome().equals(g.getMarcador().getEquipa().getNome()) && count == 0 && count2 < 2){
+            goloService.addGoal(g);
+            g.getJogo().getGolos().add(g);
+
+            g.getJogo().setCurrGolosEquipaCasa(g.getJogo().getCurrGolosEquipaCasa() + 1);
+
+            jogoService.addGame(g.getJogo());
+        } else if (g.getJogo().getEquipas().get(1).getNome().equals(g.getMarcador().getEquipa().getNome()) && count == 0 && count2 < 2){
+            goloService.addGoal(g);
+            g.getJogo().getGolos().add(g);
+
+            g.getJogo().setCurrGolosEquipaFora(g.getJogo().getCurrGolosEquipaFora() + 1);
+
+            jogoService.addGame(g.getJogo());
+        }
         
 
         return "redirect:/displayUser";
     }
+
+    @GetMapping("/reportaCartaoAmarelo/{id}")
+    public String reportaCartaoAmarelo(@PathVariable ("id") Jogo jogo, Model m) {
+        Cartao cartaoA = new Cartao();
+        cartaoA.setJogo(jogo);
+
+
+        m.addAttribute("cartaoA", cartaoA);
+        m.addAttribute("jogo", jogo);
+
+        List<Jogador> allJogadores = jogo.getEquipas().get(0).getJogadoresEquipa();
+        allJogadores.addAll(jogo.getEquipas().get(1).getJogadoresEquipa());
+
+        m.addAttribute("allJogadores", allJogadores);
+
+
+        return "reportaCartaoAmarelo";
+    }
+
+    @PostMapping("/guardaCartaoAmarelo")
+    public String guardaCrataoAmarelo(@ModelAttribute Cartao cartaoA) {
+        int count = 0;
+
+        cartaoA.setTipo("Cartao Amarelo");
+
+        for(int i=0; i < cartaoA.getJogador().getCartoesJogador().size(); i++){
+            if(cartaoA.getJogador().getCartoesJogador().get(i).getTipo().equals("Cartao Vermelho")){
+                count++;
+            }
+        }
+
+        if(count == 0 && cartaoA.getJogador().getCartoesJogador().size() < 2){
+            cartaoA.getJogo().getCartoes().add(cartaoA);
+            cartaoA.getJogador().getCartoesJogador().add(cartaoA);
+
+            cartaoService.addCard(cartaoA);
+
+        }
+
+        return "redirect:/displayUser";
+    }
+
+    @GetMapping("/reportaCartaoVermelho/{id}")
+    public String reportaCartaoVermelho(@PathVariable ("id") Jogo jogo, Model m) {
+        Cartao cartaoV = new Cartao();
+        cartaoV.setJogo(jogo);
+
+
+        m.addAttribute("cartaoV", cartaoV);
+        m.addAttribute("jogo", jogo);
+
+        List<Jogador> allJogadores = jogo.getEquipas().get(0).getJogadoresEquipa();
+        allJogadores.addAll(jogo.getEquipas().get(1).getJogadoresEquipa());
+
+        m.addAttribute("allJogadores", allJogadores);
+
+
+        return "reportaCartaoVermelho";
+    }
+
+    @PostMapping("/guardaCartaoVermelho")
+    public String guardaCrataoVermelho(@ModelAttribute Cartao cartaoV) {
+        int count = 0, count2 = 0;
+
+        cartaoV.setTipo("Cartao Vermelho");
+
+
+        for(int i=0; i < cartaoV.getJogador().getCartoesJogador().size(); i++){
+            if(cartaoV.getJogador().getCartoesJogador().get(i).getTipo().equals("Cartao Vermelho")){
+                count++;
+            }
+
+            if(cartaoV.getJogador().getCartoesJogador().get(i).getTipo().equals("Cartao Amarelo")){
+                count2++;
+            }
+        }
+
+        if(count == 0 && count2 < 2){
+            cartaoV.getJogo().getCartoes().add(cartaoV);
+            cartaoV.getJogador().getCartoesJogador().add(cartaoV);
+
+            cartaoService.addCard(cartaoV);
+
+        }
+
+        return "redirect:/displayUser";
+    }
+
+
 
 
 

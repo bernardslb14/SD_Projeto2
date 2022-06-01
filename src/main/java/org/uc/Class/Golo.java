@@ -19,19 +19,19 @@ public class Golo extends SuperClassEventos {
     private Jogador marcador;
 
     public Golo(Jogo jogo, Date momento_golo, Jogador marcador) {
-        super.setJogo(jogo);
+        super(jogo, "Golo");
         this.momento_golo = momento_golo;
         this.marcador = marcador;
     }
 
     public Golo(Date momento_golo, Jogador marcador) {
-        super();
+        super("Golo");
         this.momento_golo = momento_golo;
         this.marcador = marcador;
     }
 
     public Golo() {
-        super();
+        super("Golo");
     }
 
     public Date getMomento_golo() {

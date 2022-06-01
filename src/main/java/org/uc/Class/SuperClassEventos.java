@@ -18,6 +18,18 @@ public class SuperClassEventos {
 
     public SuperClassEventos() {}
 
+    public SuperClassEventos(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public SuperClassEventos(Jogo jogo) {
+        this.jogo = jogo;
+    }
+
+    public SuperClassEventos(Jogo jogo, String tipo) {
+        this.jogo = jogo;
+        this.tipo = tipo;
+    }
 
     public int getId() {
         return id;

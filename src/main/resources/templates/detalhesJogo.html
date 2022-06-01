@@ -16,7 +16,9 @@
         <th>GOLOS</th>
         <th>EQUIPA B</th>
         <th>GOLOS</th>
-        <th>Marcadores</th>
+        <th>MARCADORES</th>
+        <th>CARTOES AMARELOS</th>
+        <th>CARTOES VERMELHOS</th>
     </tr>
     <tr th:each="e : ${jogo}">
         <td th:text="${e.nome}">nome</td>
@@ -29,6 +31,20 @@
         <td>
             <p th:each="g : ${e.golos}">
                 <span th:text="${g.marcador.nome}">Marcador</span>
+            </p>
+        </td>
+        <td>
+            <p th:each="c : ${e.cartoes}">
+                <span th:if="${c.tipo == 'Cartao Amarelo'}">
+                    <span th:text="${c.jogador.nome}">Jogador</span>
+                </span>
+            </p>
+        </td>
+        <td>
+            <p th:each="c : ${e.cartoes}">
+                <span th:if="${c.tipo == 'Cartao Vermelho'}">
+                    <span th:text="${c.jogador.nome}">Jogador</span>
+                </span>
             </p>
         </td>
     </tr>

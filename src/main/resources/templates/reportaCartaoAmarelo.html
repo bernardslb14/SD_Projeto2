@@ -1,0 +1,24 @@
+<form th:action="@{/guardaCartaoAmarelo}" th:object="${cartaoA}" method="post">
+  <div="form-row">
+  <div>
+    <input type="hidden" th:field="*{id}">
+  </div>
+  <div>
+    <label>Momento do Cartao Amarelo</label>
+    <input type="datetime-local" th:field="*{momento_cartao}">
+  </div>
+  <label>Jogador Penalizado</label>
+  <div>
+    <select id="jogadores" th:field="*{jogador}" size="10" multiple="multiple">
+      <option th:each="e : ${allJogadores}"
+              th:value="${{e}}"
+              th:text="${e.nome}">
+        The name
+      </option>
+    </select>
+  </div>
+  <input class="golo" type="hidden" th:value="${jogo}" th:field="*{jogo}" />
+
+  <button type="submit">Registar</button>
+  </div>
+</form>
