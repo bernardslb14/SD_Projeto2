@@ -1,15 +1,13 @@
 package org.uc.Class;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 
 @Entity(name = "Cartao")
 @Table(name = "Cartao")
 public class Cartao extends SuperClassEventos{
-
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date momento_cartao;
 
@@ -42,7 +40,6 @@ public class Cartao extends SuperClassEventos{
     public void setMomento_cartao(Date momento_cartao) {
         this.momento_cartao = momento_cartao;
     }
-
 
     public Jogador getJogador() {
         return jogador;

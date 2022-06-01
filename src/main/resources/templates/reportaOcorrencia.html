@@ -1,0 +1,14 @@
+<form th:action="@{/guardaOcorrencia}" th:object="${oc}" method="post">
+  <div="form-row">
+  <div>
+    <label>Tempo do <span th:text="*{tipo}"></span></label>
+    <input type="time" th:field="*{momento}" required>
+  </div>
+  
+  <input type="hidden" th:value="${jogo}" th:field="*{jogo}">
+  <input type="hidden"  th:field="*{id}">
+  <input type="hidden" th:value="${tipo}" th:field="*{tipo}">
+
+  <button type="submit">Registar</button>
+  </div>
+</form>

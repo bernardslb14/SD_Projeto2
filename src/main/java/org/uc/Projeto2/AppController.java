@@ -13,8 +13,7 @@ import java.util.Optional;
 
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-
-import org.json.*;
+import org.json.JSONArray;
 
 
 @Controller
@@ -33,6 +32,9 @@ public class AppController {
 
     @Autowired
     GoloService goloService;
+
+    @Autowired 
+    OcorrenciaService ocorrenciaService;
 
     @Autowired
     CartaoService cartaoService;
@@ -236,11 +238,85 @@ public class AppController {
                 return reportaCartaoAmarelo(e.getJogo(), m);
             case "Cartao Vermelho":
                 return reportaCartaoVermelho(e.getJogo(), m);
+            case "Inicio do Jogo":
+                return reportaInicio(e.getJogo(), m);
+            case "Fim do jogo":
+                return reportaFim(e.getJogo(), m);
+            case "Jogo Interrompido":
+                return reportaInterropido(e.getJogo(), m);
+            case "Jogo resumido":
+                return reportaResumido(e.getJogo(), m);
         }
 
         return "redirect:/login";
     }
 
+    @GetMapping("reportaInicio/{id}")
+    public String reportaInicio(@PathVariable ("id") Jogo j, Model m){
+        List<Ocorrencia> last_occur_list = j.getOcorrencias();
+        if (last_occur_list.isEmpty()){
+            Ocorrencia oc = new Ocorrencia(j, "Início de Jogo");
+            m.addAttribute("oc", oc);
+            return "reportaOcorrencia";
+        }
+        
+        return "failedOcorrencia";
+    }
+
+    @GetMapping("reportaInterropido/{id}")
+    public String reportaInterropido(@PathVariable ("id") Jogo j, Model m){
+        
+        List<Ocorrencia> last_occur_list = j.getOcorrencias();
+        if (!last_occur_list.isEmpty()){
+            if (last_occur_list.get(last_occur_list.size()-1).getTipo().equals("Início de Jogo")){
+                Ocorrencia oc = new Ocorrencia(j, "Jogo Interrompido");
+                m.addAttribute("oc", oc);
+                return "reportaOcorrencia";
+            }
+        }
+        
+        return "failedOcorrencia";
+    }
+
+    @GetMapping("reportaResumido/{id}")
+    public String reportaResumido(@PathVariable ("id") Jogo j, Model m){
+
+        List<Ocorrencia> last_occur_list = j.getOcorrencias();
+        if (!last_occur_list.isEmpty()){
+            if (last_occur_list.get(last_occur_list.size()-1).getTipo().equals("Jogo Interrompido")){
+                Ocorrencia oc = new Ocorrencia(j, "Jogo Resumido");
+                m.addAttribute("oc", oc);
+                return "reportaOcorrencia";
+            }
+        }
+        
+        return "failedOcorrencia";
+    }
+
+
+    @GetMapping("reportaFim/{id}")
+    public String reportaFim(@PathVariable ("id") Jogo j, Model m){
+        List<Ocorrencia> last_occur_list = j.getOcorrencias();
+        if (!last_occur_list.isEmpty()){
+            if (last_occur_list.get(last_occur_list.size()-1).getTipo().equals("Jogo Resumido")){
+                Ocorrencia oc = new Ocorrencia(j, "Fim de Jogo");
+                m.addAttribute("oc", oc);
+                return "reportaOcorrencia";
+            } 
+        } 
+        
+        return "failedOcorrencia";
+    }
+
+    @PostMapping("/guardaOcorrencia")
+    public String guardaOcorrencia(@ModelAttribute Ocorrencia o){
+        
+        ocorrenciaService.addOccurrence(o);
+        o.getJogo().getOcorrencias().add(o);
+        jogoService.addGame(o.getJogo());
+
+        return "redirect:/displayUser";
+    }
 
     @GetMapping("/reportaGolo/{id}")
     public String reportaGolo(@PathVariable ("id") Jogo jogo, Model m) {
@@ -288,8 +364,6 @@ public class AppController {
 
             jogoService.addGame(g.getJogo());
         }
-        
-
         return "redirect:/displayUser";
     }
 
@@ -330,7 +404,6 @@ public class AppController {
             cartaoService.addCard(cartaoA);
 
         }
-
         return "redirect:/displayUser";
     }
 
@@ -379,10 +452,6 @@ public class AppController {
 
         return "redirect:/displayUser";
     }
-
-
-
-
 
     @GetMapping("/displayViewer")
     public void opcoesViewer(Model m) {

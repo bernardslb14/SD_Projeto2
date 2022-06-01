@@ -37,10 +37,11 @@ public class Jogo {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Golo> golos;
 
-    //Um evento está associado a um jogo e Um jogo tem vários eventos
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Ocorrencia> ocorrencias;
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<Cartao> cartoes;
-
 
     public Jogo(String nome, int currGolosEquipaCasa, int currGolosEquipaFora, Date data_inicio, Date data_fim,
             boolean estado, String localizacao, List<Equipa> equipas, List<Golo> golos) {
@@ -57,6 +58,9 @@ public class Jogo {
 
     public Jogo() {
         this.equipas = new ArrayList<Equipa>();
+        this.golos = new ArrayList<Golo>();
+        this.ocorrencias = new ArrayList<Ocorrencia>();
+        this.cartoes = new ArrayList<Cartao>();
         this.currGolosEquipaCasa = 0;
         this.currGolosEquipaFora = 0;
         this.estado = false;
@@ -142,11 +146,19 @@ public class Jogo {
         this.golos = golos;
     }
 
-    public List<Cartao> getCartoes() {
-        return cartoes;
+    public List<Ocorrencia> getOcorrencias() {
+        return ocorrencias;
     }
 
-    public void setCartoes(List<Cartao> cartoes) {
-        this.cartoes = cartoes;
+    public void setOcorrencias(List<Ocorrencia> ocorrencias) {
+        this.ocorrencias = ocorrencias;
+    }
+
+    public List<Ocorrencia> getOcorrencias() {
+        return ocorrencias;
+    }
+
+    public void setOcorrencias(List<Ocorrencia> ocorrencias) {
+        this.ocorrencias = ocorrencias;
     }
 }
