@@ -44,6 +44,9 @@ public class Equipa {
     }
 
     public Equipa() {
+        this.vitorias = 0;
+        this.empates = 0;
+        this.derrotas = 0;
     }
 
     public int getId() {

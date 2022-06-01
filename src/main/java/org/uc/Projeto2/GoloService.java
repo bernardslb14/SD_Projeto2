@@ -34,4 +34,7 @@ public class GoloService
         goalRepository.delete(g);
     }
 
+    public int getBestScorer(){
+        return goalRepository.findByGoals().get(0).getMarcador().getId();
+    }
 }  

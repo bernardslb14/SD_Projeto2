@@ -19,6 +19,7 @@
         <th>MARCADORES</th>
         <th>CARTOES AMARELOS</th>
         <th>CARTOES VERMELHOS</th>
+        <th>ESTADO</th>
     </tr>
     <tr th:each="e : ${jogo}">
         <td th:text="${e.nome}">nome</td>
@@ -46,6 +47,12 @@
                     <span th:text="${c.jogador.nome}">Jogador</span>
                 </span>
             </p>
+        </td>
+        <td>
+            <span th:if="${#lists.size(e.ocorrencias) == 0}"></span>
+            <span th:unless="${#lists.size(e.ocorrencias) == 0}">
+                <span th:text="${e.ocorrencias[#lists.size(e.ocorrencias)-1].tipo}">Estado do Jogo</span>
+            </span>
         </td>
     </tr>
 </table>

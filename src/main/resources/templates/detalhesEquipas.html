@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista Jogos</title>
+    <meta charset="utf8"/>
+</head>
+<body>
+<h1>Estatísticas Equipas</h1>
+
+<table border="1">
+    <tr>
+        <th>NOME</th>
+        <th>IMAGEM</th>
+        <th>NR_JOGOS</th>
+        <th>NR_VITORIAS</th>
+        <th>NR_EMPATES</th>
+        <th>NR_DERROTAS</th>
+    </tr>
+    <tr th:each="e : ${equipa}">
+        <td th:text="${e.nome}">nome</td>
+        <td><img th:src="${e.imagem}" width="40" height="40"></td>
+        <td th:text="${e.vitorias + e.empates + e.derrotas}">jogos</td>
+        <td th:text="${e.vitorias}">vitorias</td>
+        <td th:text="${e.empates}">empates</td>
+        <td th:text="${e.derrotas}">derrotas</td>
+    </tr>
+</table>
+
+<table border="1">
+    <tr>
+        MELHOR MARCADOR
+    </tr>
+    <tr>
+        <th>NOME</th>
+        <th>POSICAO</th>
+        <th>EQUIPA</th>
+        <th>IMAGEM</th>
+        <th>NR_GOLOS</th>
+    </tr>
+    <tr>
+        <td th:text="${j.nome}">nome</td>
+        <td th:text="${j.posicao}">posicao</td>
+        <td th:text="${j.equipa.nome}">equipa</td>
+        <td><img th:src="${j.equipa.imagem}" width="40" height="40"></td>
+        <td th:text="${#lists.size(j.golosJogador)}">golos</td>
+    </tr>
+</table>
+
+</body>
+</html>
